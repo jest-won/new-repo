@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html, body, #__next {
+  height: 100%;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+#page-root {
+  position: relative;
+  min-height: 100%;
+  background: #fff;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* @stack 레이어 컨테이너 */
+#stack-root {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* AnimatePresence에서 쓰는 루트 */
+.stack-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* 시트 래핑 */
+.sheet-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+/* 배경 어둡게 */
+.sheet-backdrop {
+  position: absolute;
+  inset: 0;
+  background: #000;
+}
+
+/* 오른쪽에서 들어오는 패널 */
+.sheet-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(92vw, 520px);
+  background: #fff;
+  box-shadow: -8px 0 24px rgba(0,0,0,0.18);
+  border-left: 1px solid rgba(0,0,0,0.06);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
